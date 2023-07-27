@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3a5ccd16-2cac-43a7-b672-b88f93ee02e3">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFF7FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFF7FF"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="New Dataset 1" uuid="7c1f5a20-7aed-4590-9308-21c27e51e7eb">
+		<queryString language="SQL">
+			<![CDATA[select hora as Hora,[Lunes],[Martes],[Miércoles],[Jueves],[Viernes]
+from(
+     SELECT h.hora,h.dia,a.nombre
+     FROM  Actividad a
+     inner join Horario h on h.IdHorario=a.IdHorario
+) as source
+pivot
+(
+    max(nombre)
+    for dia in ([Lunes],[Martes],[Miércoles],[Jueves],[Viernes])
+) as pvt]]>
+		</queryString>
+		<field name="Hora" class="java.lang.String"/>
+		<field name="Lunes" class="java.lang.String"/>
+		<field name="Martes" class="java.lang.String"/>
+		<field name="Miércoles" class="java.lang.String"/>
+		<field name="Jueves" class="java.lang.String"/>
+		<field name="Viernes" class="java.lang.String"/>
+	</subDataset>
+	<queryString>
+		<![CDATA[select hora as Hora,[Lunes],[Martes],[Miércoles],[Jueves],[Viernes]
+from(
+     SELECT h.hora,h.dia,a.nombre
+     FROM  Actividad a
+     inner join Horario h on h.IdHorario=a.IdHorario
+) as source
+pivot
+(
+    max(nombre)
+    for dia in ([Lunes],[Martes],[Miércoles],[Jueves],[Viernes])
+) as pvt]]>
+	</queryString>
+	<field name="Hora" class="java.lang.String"/>
+	<field name="Lunes" class="java.lang.String"/>
+	<field name="Martes" class="java.lang.String"/>
+	<field name="Miércoles" class="java.lang.String"/>
+	<field name="Jueves" class="java.lang.String"/>
+	<field name="Viernes" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="22" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="12" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="14" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="212" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table 1" style="table 1" x="0" y="63" width="555" height="113" uuid="8d54e90b-0217-4618-a140-e5f31d94dde8"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="New Dataset 1" uuid="7fe7d5df-01ba-405d-832d-6473577f0b34">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="7ed7e938-52f5-4891-aeb5-2fb68d2c9dc2">
+						<jr:columnHeader style="table 1_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="729b869f-6024-438e-8a3e-1ea67f1261bf"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Hora]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="30"/>
+						<jr:detailCell style="table 1_TD" height="20">
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="90" height="20" uuid="203af648-e25a-46a1-9213-15dc68a72bd4"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{Hora}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="3f4bc099-7905-4ee0-a7e3-24114e294d7c">
+						<jr:columnHeader style="table 1_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="b1a8ef49-51d8-4e3f-8d19-9d02b77fd0b9"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Lunes]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="30"/>
+						<jr:detailCell style="table 1_TD" height="20">
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="90" height="20" uuid="06f3888d-52c6-41fb-a720-e563369539e6"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{Lunes}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="93c1ef90-99af-44ad-85f0-e91e4d5ccb39">
+						<jr:columnHeader style="table 1_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="89ef18e6-c66e-47e0-b91c-bcc641ce8bf9"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Martes]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="30"/>
+						<jr:detailCell style="table 1_TD" height="20">
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="90" height="20" uuid="c6a50b97-5e15-4418-93fd-4d91c1e2ff24"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{Martes}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="511c61b8-34bb-486e-b9c4-939c1e0ce7f3">
+						<jr:columnHeader style="table 1_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="5aec855f-6110-4d80-97ac-62d44b782412"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Miércoles]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="30"/>
+						<jr:detailCell style="table 1_TD" height="20">
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="90" height="20" uuid="b3248c10-8cbc-4e85-874e-48cf4518768e"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{Miércoles}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="c638d413-3bfb-4d97-ab66-0148e2086dbf">
+						<jr:columnHeader style="table 1_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="934e1efc-d757-401b-8e25-4cc1d30cba04"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Jueves]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="30"/>
+						<jr:detailCell style="table 1_TD" height="20">
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="90" height="20" uuid="991a678b-c189-4577-80a4-c7240d28a93a"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{Jueves}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="8c693bd1-cc88-484d-8680-d862a048f022">
+						<jr:columnHeader style="table 1_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="302aaca2-63b0-4ba9-b8f5-3d3fd62366a9"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[ Viernes]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="30"/>
+						<jr:detailCell style="table 1_TD" height="20">
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="90" height="20" uuid="1ff9d0b5-9f2b-497f-9c3b-dc457e969204"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{Viernes}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<staticText>
+				<reportElement x="183" y="2" width="182" height="18" uuid="53e281fe-9d4e-41a1-892a-ff4ab6f0eb36"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial Black" size="12"/>
+				</textElement>
+				<text><![CDATA[HORARIO DE ACTIVIDADES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="23" width="265" height="20" uuid="86204fe3-f58b-4e69-b9cc-6c548993d3a2"/>
+				<text><![CDATA[Abierto: Lunes a Viernes 8:30 a 12:30  /  15:30 a 22:00]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="41" y="43" width="193" height="20" uuid="0b804055-2d7d-4968-974e-6992c30a7770"/>
+				<text><![CDATA[Sábado 10:30 a 12:30]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="2" width="100" height="20" uuid="a65839c5-977b-454d-b2a0-29e0b125a725"/>
+				<textElement>
+					<font fontName="Arial Black"/>
+				</textElement>
+				<text><![CDATA[GRIP GYM]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+</jasperReport>

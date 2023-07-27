@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="04a71cf4-c869-4e33-935f-b2cb4bc39227">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="Dni" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[Select p.apellido+'; '+p.nombre 'Cliente',r.nombre,r.repeticion,r.serie,r.dia
+from Rutina r 
+inner join Cliente c on c.IdCliente=r.IdCliente 
+left join Persona p on p.IdPersona=c.IdPersona
+where p.dni=$P{Dni}]]>
+	</queryString>
+	<field name="Cliente" class="java.lang.String"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="repeticion" class="java.lang.Integer"/>
+	<field name="serie" class="java.lang.Integer"/>
+	<field name="dia" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="35" y="18" width="184" height="47" uuid="ccabf5a7-9d68-46a2-9844-1af495876d96"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Tahoma" size="36" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RUTINA]]></text>
+			</staticText>
+			<image>
+				<reportElement x="377" y="0" width="178" height="79" uuid="478ffed5-96c0-4840-863e-75ab1cfb2d03"/>
+				<imageExpression><![CDATA["C:\\Users\\Vero\\Pictures\\Nueva carpeta\\MiniLOGOGripGymJPG.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="38" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="144" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="17" y="10" width="538" height="122" uuid="33f905e0-edd9-4618-9526-34346d3d73b3"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="69" y="21" width="100" height="20" uuid="1752e0eb-310a-46d0-a131-11e14b2099fc"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cliente:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="69" y="41" width="116" height="20" uuid="666656e7-4274-429d-8d4e-aaed0159cf13"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre Rutina:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="69" y="61" width="100" height="20" uuid="2960c716-a229-4e88-8de7-4413cb35b024"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Repeticiones:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="69" y="81" width="100" height="20" uuid="06ae05c6-bc68-4eb5-9def-0b5c1debcab1"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Series:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="69" y="101" width="100" height="20" uuid="648fea3e-1bd8-4a3e-95a1-ffa0a8c800ab"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Día:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="185" y="21" width="370" height="20" uuid="54ac59da-8c42-4a60-b498-0086bbce1e02"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Cliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="185" y="41" width="100" height="20" uuid="35b4382d-3de3-4d89-a972-481bd4068b71"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="185" y="61" width="100" height="20" uuid="57e51b1a-d9b2-4643-8130-4f766efc9118"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{repeticion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="185" y="81" width="100" height="20" uuid="11f3b7f9-efe5-49fb-a1a3-d9a98fceb04c"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{serie}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="185" y="101" width="100" height="20" uuid="a5fbad85-eab3-4ead-a7e7-eaba1b66a84c"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dia}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

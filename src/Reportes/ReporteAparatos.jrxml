@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0ed2c534-fd55-407f-a485-282ab442a8e0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="13"/>
+	<queryString language="SQL">
+		<![CDATA[select a.nombre,COUNT(nombre) 'Cantidad Aparato'
+from Aparato a
+group by a.nombre]]>
+	</queryString>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="Cantidad Aparato" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="16" width="555" height="52" uuid="eec7a1ea-ea6b-41ba-80d6-dcee6a580c00"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Black" size="30"/>
+				</textElement>
+				<text><![CDATA[ESTADÍSTICAS DE APARATOS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="7" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="12" splitType="Stretch"/>
+	</columnFooter>
+	<summary>
+		<band height="359" splitType="Stretch">
+			<pieChart>
+				<chart>
+					<reportElement x="0" y="0" width="555" height="359" uuid="b6c3a4b9-a946-40b6-aa0f-0352fd62e8ea"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{nombre}]]></keyExpression>
+					<valueExpression><![CDATA[$F{Cantidad Aparato}]]></valueExpression>
+					<labelExpression><![CDATA[$F{nombre}+" - "+$F{Cantidad Aparato}]]></labelExpression>
+				</pieDataset>
+				<piePlot>
+					<plot/>
+					<itemLabel/>
+				</piePlot>
+			</pieChart>
+		</band>
+	</summary>
+</jasperReport>

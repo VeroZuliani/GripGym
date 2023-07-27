@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="947bb41f-b220-4671-8821-b9cc9faf1932">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="Dni" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select fm.IdFichaMedica,p.apellido+' '+p.nombre 'Cliente',fm.grupoSanguineo,fm.telefonoEmergencia,fm.mutual,fm.enfermedad,fm.observacion
+from FichaMedica fm 
+inner join Cliente c on c.IdCliente=fm.IdCliente
+left join Persona p on p.IdPersona=c.IdPersona
+where p.dni=$P{Dni}]]>
+	</queryString>
+	<field name="IdFichaMedica" class="java.lang.Integer"/>
+	<field name="Cliente" class="java.lang.String"/>
+	<field name="grupoSanguineo" class="java.lang.String"/>
+	<field name="telefonoEmergencia" class="java.lang.Integer"/>
+	<field name="mutual" class="java.lang.String"/>
+	<field name="enfermedad" class="java.lang.String"/>
+	<field name="observacion" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="127" y="14" width="297" height="51" uuid="32a40d1c-b506-45af-9298-fa92f11a19f2"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="36" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[FICHA MEDICA]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="31" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="190" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="0" y="12" width="555" height="169" uuid="5ca78fe2-9f91-4416-be6f-c097a5d6ca39"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="25" y="26" width="163" height="20" uuid="9ba69ba0-7bf1-40a0-bf4b-3770337d6e4a"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nro Ficha Médica:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="46" width="163" height="20" uuid="7a7b3089-b496-41c6-9851-8b29bec8f01f"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cliente:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="66" width="163" height="20" uuid="d1dba7a4-6d2e-478c-b223-a6e27047d168"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Grupo Sanguíneo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="86" width="163" height="20" uuid="60681ee0-a354-4897-a24a-e7d2fda1811d"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tel Emergencia:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="106" width="163" height="20" uuid="1229902b-e4f7-448d-bbb8-829b951ccf2d"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mutual:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="126" width="163" height="20" uuid="d33ad3c0-cf74-4262-b24f-096ec3038602"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Enfermedades:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="146" width="163" height="20" uuid="7f03c39f-4ee4-4c65-a311-75000431f97f"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Observación:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="235" y="26" width="100" height="20" uuid="e750d859-ea63-4774-99bd-18ecd60ec167"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IdFichaMedica}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="235" y="46" width="294" height="20" uuid="c0a4a198-b30a-4c04-a4a2-581a544df4e4"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Cliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="235" y="66" width="100" height="20" uuid="63a02fb9-faad-4497-b2a0-0e265332a7f3"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{grupoSanguineo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="235" y="86" width="177" height="20" uuid="62a4875c-79bd-472a-b141-8821d661766d"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefonoEmergencia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="235" y="106" width="177" height="20" uuid="cb3e6310-8196-4d79-97f6-d0443f2a0d71"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{mutual}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="235" y="126" width="294" height="20" uuid="f868394c-f511-460b-878f-df7d2471a80e"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{enfermedad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="235" y="146" width="294" height="20" uuid="d7fd2265-9517-4e75-a16c-d091ef5a23e4"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{observacion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>
